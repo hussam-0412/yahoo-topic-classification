@@ -4,7 +4,7 @@ Group project for the Natural Language Processing course at İstinye University.
 
 The project classifies Yahoo! Answers questions and answers into 10 topics. It compares traditional text classifiers with fine-tuned BERT, RoBERTa and DeBERTa-v3 models.
 
-**Repository status:** The Python script and notebook are uploaded. Dataset files and the remaining contribution files are pending.
+**Repository status:** The Python script, notebook, and raw and cleaned data files are uploaded. The data files were regenerated using the preparation script's default settings; they are not confirmed copies from the original training run. Remaining contribution files and licensing confirmation are pending.
 
 ## Task and dataset
 
