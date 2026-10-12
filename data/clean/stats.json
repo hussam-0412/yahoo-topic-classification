@@ -1,0 +1,202 @@
+{
+  "source": "community-datasets/yahoo_answers_topics",
+  "class_names": [
+    "Society & Culture",
+    "Science & Mathematics",
+    "Health",
+    "Education & Reference",
+    "Computers & Internet",
+    "Sports",
+    "Business & Finance",
+    "Entertainment & Music",
+    "Family & Relationships",
+    "Politics & Government"
+  ],
+  "text_fields_concatenated": [
+    "question_title",
+    "question_content",
+    "best_answer"
+  ],
+  "config": {
+    "model": "roberta-base",
+    "max_len": 128,
+    "epochs": 2,
+    "batch_size": 32,
+    "grad_accum": 1,
+    "lr": 2e-05,
+    "layer_decay": 1.0,
+    "weight_decay": 0.01,
+    "warmup_ratio": 0.06,
+    "scheduler": "linear",
+    "label_smoothing": 0.0,
+    "max_grad_norm": 1.0,
+    "precision": "auto",
+    "clean_html": true,
+    "train_size": 100000,
+    "val_size": 10000,
+    "test_size": 0,
+    "resume": true,
+    "log_every": 100,
+    "num_workers": 2,
+    "seed": 42,
+    "data_dir": "data",
+    "results_dir": "results",
+    "runs_dir": "runs",
+    "limit_train": 0,
+    "smoke": false
+  },
+  "cleaning": {
+    "train": {
+      "dropped_empty": 0,
+      "dropped_duplicate": 0,
+      "raw_chars": 51957761,
+      "clean_chars": 51929019
+    },
+    "test": {
+      "dropped_empty": 0,
+      "dropped_duplicate": 0,
+      "raw_chars": 31196534,
+      "clean_chars": 31176531
+    }
+  },
+  "train_test_overlap": 0,
+  "file_bytes": {
+    "train": 19664142,
+    "val": 2214678,
+    "test": 13119813
+  },
+  "splits": {
+    "train": {
+      "rows": 90000,
+      "class_counts": {
+        "Society & Culture": 9018,
+        "Science & Mathematics": 8819,
+        "Health": 8965,
+        "Education & Reference": 8909,
+        "Computers & Internet": 8959,
+        "Sports": 9046,
+        "Business & Finance": 9041,
+        "Entertainment & Music": 9154,
+        "Family & Relationships": 9093,
+        "Politics & Government": 8996
+      },
+      "support": [
+        9018,
+        8819,
+        8965,
+        8909,
+        8959,
+        9046,
+        9041,
+        9154,
+        9093,
+        8996
+      ],
+      "words": {
+        "mean": 91.66595555555556,
+        "median": 60.0,
+        "p95": 273.0,
+        "max": 1043
+      },
+      "chars": {
+        "mean": 518.5809333333333,
+        "median": 337.0
+      },
+      "estimated_truncated": {
+        "128": 0.30364444444444444,
+        "256": 0.10312222222222223,
+        "512": 0.020844444444444443
+      }
+    },
+    "val": {
+      "rows": 10000,
+      "class_counts": {
+        "Society & Culture": 1002,
+        "Science & Mathematics": 980,
+        "Health": 996,
+        "Education & Reference": 990,
+        "Computers & Internet": 996,
+        "Sports": 1005,
+        "Business & Finance": 1004,
+        "Entertainment & Music": 1017,
+        "Family & Relationships": 1010,
+        "Politics & Government": 1000
+      },
+      "support": [
+        1002,
+        980,
+        996,
+        990,
+        996,
+        1005,
+        1004,
+        1017,
+        1010,
+        1000
+      ],
+      "words": {
+        "mean": 92.8504,
+        "median": 60.0,
+        "p95": 283.0,
+        "max": 880
+      },
+      "chars": {
+        "mean": 525.6735,
+        "median": 338.0
+      },
+      "estimated_truncated": {
+        "128": 0.3044,
+        "256": 0.1072,
+        "512": 0.0222
+      }
+    },
+    "test": {
+      "rows": 60000,
+      "class_counts": {
+        "Society & Culture": 6000,
+        "Science & Mathematics": 6000,
+        "Health": 6000,
+        "Education & Reference": 6000,
+        "Computers & Internet": 6000,
+        "Sports": 6000,
+        "Business & Finance": 6000,
+        "Entertainment & Music": 6000,
+        "Family & Relationships": 6000,
+        "Politics & Government": 6000
+      },
+      "support": [
+        6000,
+        6000,
+        6000,
+        6000,
+        6000,
+        6000,
+        6000,
+        6000,
+        6000,
+        6000
+      ],
+      "words": {
+        "mean": 91.7267,
+        "median": 60.0,
+        "p95": 275.0,
+        "max": 1021
+      },
+      "chars": {
+        "mean": 519.60885,
+        "median": 337.0
+      },
+      "estimated_truncated": {
+        "128": 0.3030833333333333,
+        "256": 0.10355,
+        "512": 0.021116666666666666
+      }
+    }
+  },
+  "metric_choice": {
+    "primary": "accuracy",
+    "balanced": true,
+    "imbalance_ratio": 1.0,
+    "justification": "The test set has 6,000-6,000 examples per class (imbalance ratio 1.00). That is effectively balanced, so accuracy is not inflated by a majority class and is the right headline metric. It is also what every published result on this benchmark reports, which is what makes comparison possible. Macro-F1 is reported alongside it as a safeguard: because it weights every class equally, a model that quietly abandoned one class would show up there while accuracy stayed respectable. Micro-F1 is identical to accuracy in single-label classification, so it adds nothing here. AUC is not used because this is a 10-class decision reported at a fixed operating point, not a ranking problem with a tunable threshold."
+  }
+}
